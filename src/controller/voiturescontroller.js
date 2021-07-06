@@ -27,8 +27,7 @@ exports.deleteOne = async (request, response) => {
     const {id} = request.body;
     try{
         await Voiture.deleteMYCar(id);
-        const result = await Voiture.getAllVoitures();
-        response.status(201).json(result[0]);
+        response.status(200).json({ message: "Numero de plaque d'immatriculation a bien suprimé" });
     } catch(error){
         response.json({ error: error.message });   
     }
@@ -38,7 +37,7 @@ exports.changeOne = async (request, response) => {
     const {id,ndp} = request.body;
     try{
         await Voiture.changeMYCar(ndp,id);
-        response.status(200).json({ message: 'Prix modifié avec succès' });
+        response.status(200).json({ message: "Numero de plaque d'immatriculation a modifié avec succès" });
     } catch(error){
         response.json({ error: error.message });   
     }
