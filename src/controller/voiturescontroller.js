@@ -33,3 +33,13 @@ exports.deleteOne = async (request, response) => {
         response.json({ error: error.message });   
     }
 }
+
+exports.changeOne = async (request, response) => {
+    const {id,ndp} = request.body;
+    try{
+        await Voiture.changeMYCar(ndp,id);
+        response.status(200).json({ message: 'Prix modifié avec succès' });
+    } catch(error){
+        response.json({ error: error.message });   
+    }
+}
