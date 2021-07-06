@@ -9,3 +9,12 @@ exports.findAll = async (request, response) => {
         response.json({ error: error.message });   
     }
 }
+
+exports.addCar = async (request, response) => {
+    try{
+        const result = await Voiture.postMyCar();
+        response.status(200).json({ data: result[0] })
+    } catch(error){
+        response.json({ error: error.message });   
+    }
+}
