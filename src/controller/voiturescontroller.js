@@ -1,5 +1,6 @@
 const { request } = require('express');
 const Voiture = require('../models/voiture');
+const uuid = require('uuid');
 
 exports.findAll = async (request, response) => {
     try{
@@ -11,10 +12,14 @@ exports.findAll = async (request, response) => {
 }
 
 exports.addCar = async (request, response) => {
+    const id = uuid.v4();
+    const {ndp , userid } = request.body;
+
     try{
-        const result = await Voiture.postMyCar();
-        response.status(200).json({ data: result[0] })
+        await Voiture.postMyCar(id , ndp , userid);
+        const result = await Voiture.getAllVoitures();
+        response.status(201).json(result[0]);
     } catch(error){
-        response.json({ error: error.message });   
+        response.json(error.message);   
     }
 }
