@@ -11,6 +11,16 @@ exports.findAll = async (request, response) => {
     }
 }
 
+exports.findNum = async (request, response) => {
+    const ndp = request.body;
+    try{
+        const result = await Voiture.getUserInfo(ndp);
+        response.status(200).json({ data: result[0] })
+    } catch(error){
+        response.json({ error: error.message });   
+    }
+}
+
 exports.addCar = async (request, response) => {
     const id = uuid.v4();
     const {ndp , userid } = request.body;
