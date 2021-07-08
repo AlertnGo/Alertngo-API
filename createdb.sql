@@ -7,7 +7,7 @@ CREATE TABLE user (
     lastname varchar(100) NOT NULL,
     email varchar(100) NOT NULL,
 	password varchar(100) NOT NULL,
-    telephone  int NOT NULL,
+    telephone  varchar(14) NOT NULL,
     theme boolean default 0,
     UNIQUE (ID)
 );
@@ -24,3 +24,11 @@ CREATE TABLE voiture (
 );
 
 insert into voiture (id , ndp , user_id) values ("d6678c9b-1812-408e-abaf-32ef3edfecab", "ch876rj" , "d314ae5f-942f-4353-9fe9-7e95bb0771ee");
+
+CREATE TABLE messages (
+    id int NOT NULL auto_increment,
+    message varchar(500) not null,
+    primarykey(id)
+);
+
+insert into alertngo.messages (message) value ("Bonjour, je tiens à vous remercier parceque votre façon de vous garer m'a facilité la vie. Merci et bonne journée.")
