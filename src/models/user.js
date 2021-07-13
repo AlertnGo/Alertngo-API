@@ -8,6 +8,10 @@ exports.getById = async (id) => {
   return await db.execute(`SELECT name,lastname,telephone , theme FROM user where id = ? ;` ,[id]);
 };
 
+exports.setThemeOption = async (id) => {
+  return await db.execute(`UPDATE user SET theme = ? where id = ? ;` ,[false , id]);
+};
+
 exports.getByEmail = async (email) => {
     return await db.execute(`SELECT * FROM user Where email = ?;`, [email]);
 }

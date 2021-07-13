@@ -37,8 +37,6 @@ exports.addCar = async (request, response) => {
   } catch (error) {
     response.json(error.message);
   }
-
-
 };
 
 exports.deleteOne = async (request, response) => {

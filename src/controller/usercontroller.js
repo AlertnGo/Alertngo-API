@@ -14,6 +14,17 @@ exports.findAll = async (request, response) => {
   }
 };
 
+exports.setTheme = async (request, response) => {
+  const {id} = request.params;
+  try {
+    const result = await User.setThemeOption(id);
+    response.status(200).json({ data: result[0] });
+  } catch (error) {
+    response.json({ error: error.message });
+  }
+};
+
+
 exports.getProfile = async (request, response) => {
   const {id} = request.params;
   try {

@@ -8,7 +8,7 @@ CREATE TABLE user (
     email varchar(100) NOT NULL,
 	password varchar(100) NOT NULL,
     telephone  varchar(14) NOT NULL,
-    theme boolean default 0,
+    theme Bool default 0,
     UNIQUE (ID)
 );
 
