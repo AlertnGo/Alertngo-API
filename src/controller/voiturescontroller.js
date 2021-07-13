@@ -25,36 +25,18 @@ exports.findNum = async (request, response) => {
 exports.addCar = async (request, response) => {
   const id = uuid.v4();
   const {ndp, userid } = request.body;
-
   try {
     const result = await Voiture.getByNdp(ndp);
-    if (result[0]) {
+    if (result[0].length !== 0) {
       response.status(409).json({ message: "Un voiture existe déja" });
     } else {
       await Voiture.postMyCar(id, ndp, userid);
-      response.status(201).json(result[0]);
-      console.log("heelooooooooo");
+      const data = await Voiture.getByNdp(ndp)
+      response.status(201).json(data[0]);
     }
   } catch (error) {
     response.json(error.message);
   }
-
-  // try {
-  //     const result = await Voiture.postMyCar(id, ndp, userid);
-  //     response.status(201).json(result[0]);
-  //     console.log("heelooooooooo");
-  // } catch (error) {
-  //   response.json(error.message);
-  // }
-  // try {
-  //   console.log(ndp);
-  //   // const result = await Voiture.getByNdp(ndp);
-  //   // if (result[0]) {
-  //   //       response.status(409).json({ message: "Un voiture existe déja" });
-  //   //     } 
-  // } catch (error) {
-  //   response.json(error.message);
-  // }
 
 
 };
