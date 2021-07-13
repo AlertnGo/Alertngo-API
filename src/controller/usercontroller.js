@@ -14,6 +14,17 @@ exports.findAll = async (request, response) => {
   }
 };
 
+exports.getProfile = async (request, response) => {
+  const {id} = request.params;
+  try {
+    const result = await User.getById(id);
+    response.status(200).json({ data: result[0] });
+  } catch (error) {
+    response.json({ error: error.message });
+  }
+};
+
+
 exports.creation = async (request, response) => {
   const user = request.body;
   if (user === undefined) {

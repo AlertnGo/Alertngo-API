@@ -4,6 +4,10 @@ exports.getAllUsers = async () => {
   return await db.execute(`SELECT * FROM user`);
 };
 
+exports.getById = async (id) => {
+  return await db.execute(`SELECT name,lastname,telephone , theme FROM user where id = ? ;` ,[id]);
+};
+
 exports.getByEmail = async (email) => {
     return await db.execute(`SELECT * FROM user Where email = ?;`, [email]);
 }
