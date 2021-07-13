@@ -4,6 +4,10 @@ exports.getAllVoitures = async () => {
   return await db.execute(`SELECT * FROM voiture`);
 };
 
+exports.getByNdp = async (ndp) => {
+  return await db.execute(`SELECT * FROM voiture where ndp = ?; ` [ndp]);
+};
+
 exports.postMyCar = async (id, ndp, userid) => {
   return await db.execute(
     `INSERT INTO voiture (id , ndp , user_id  ) VALUES (?,?,?);`,
