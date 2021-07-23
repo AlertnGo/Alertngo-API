@@ -40,7 +40,7 @@ exports.addCar = async (request, response) => {
 };
 
 exports.deleteOne = async (request, response) => {
-  const { id } = request.body;
+  const { id } = request.params;
   try {
     await Voiture.deleteMYCar(id);
     response

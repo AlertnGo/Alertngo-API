@@ -22,7 +22,7 @@ exports.enregistrer = async (user) => {
 }
 
 exports.getMines = async (id) => {
-  return await db.execute(`SELECT user.id , voiture.user_id , name ,ndp  FROM user INNER JOIN voiture
+  return await db.execute(`SELECT user.id as user_id , voiture.user_id as voitureuserid , voiture.id as id , name ,ndp  FROM user INNER JOIN voiture
   ON user.id = voiture.user_id  where user.id = ?;`, [id]);
 };
 

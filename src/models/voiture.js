@@ -28,6 +28,6 @@ exports.changeMYCar = async (ndp,id) => {
 };
 
 exports.getUserInfo = async (ndp) => {
-  return await db.execute(`SELECT user.id , voiture.user_id , name , lastname , ndp , telephone FROM user INNER JOIN voiture
+  return await db.execute(`SELECT user.id , voiture.user_id , name , lastname , telephone FROM user INNER JOIN voiture
   ON user.id = voiture.user_id  where ndp = ?;`, [ndp]);
 };
