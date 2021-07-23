@@ -4,8 +4,9 @@ exports.getAllVoitures = async () => {
   return await db.execute(`SELECT * FROM voiture`);
 };
 
+
 exports.getByNdp = async (ndp) => {
-  return await db.execute(`SELECT * FROM voiture where ndp = ?; `, [ndp]);
+  return await db.execute(`SELECT * FROM voiture where ndp = ?; `,[ndp]);
 };
 
 exports.postMyCar = async (id, ndp, userid) => {

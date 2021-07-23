@@ -9,7 +9,7 @@ exports.getById = async (id) => {
 };
 
 exports.setThemeOption = async (id) => {
-  return await db.execute(`UPDATE user SET theme = ? where id = ? ;` ,[false , id]);
+  return await db.execute(`UPDATE user SET theme = ? where id = ? ;` ,[true , id]);
 };
 
 exports.getByEmail = async (email) => {
