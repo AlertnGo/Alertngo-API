@@ -21,3 +21,10 @@ exports.enregistrer = async (user) => {
     return await db.execute(`INSERT INTO user (id , email, password, name, lastname, telephone) VALUES (?, ?, ?, ?, ?, ?);`, [id,email, password, nom, prenom, telephone])
 }
 
+exports.getMines = async (id) => {
+  return await db.execute(`SELECT user.id , voiture.user_id , name ,ndp  FROM user INNER JOIN voiture
+  ON user.id = voiture.user_id  where user.id = ?;`, [id]);
+};
+
+
+
