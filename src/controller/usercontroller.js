@@ -16,9 +16,19 @@ exports.findAll = async (request, response) => {
 
 exports.setTheme = async (request, response) => {
   const {id} = request.params;
-  
   try {
     const result = await User.setThemeOption(id);
+    response.status(200).json({ data: result[0] });
+  } catch (error) {
+    response.json({ error: error.message });
+  }
+};
+
+exports.changeName = async (request, response) => {
+  const {id} = request.params;
+  const {name} = request.body;
+  try {
+    const result = await User.setMyName(id , name);
     response.status(200).json({ data: result[0] });
   } catch (error) {
     response.json({ error: error.message });
