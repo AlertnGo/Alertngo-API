@@ -4,6 +4,7 @@ const User = require('../controller/usercontroller');
 
 router.get('/', User.findAll);
 router.patch('/name/:id', User.changeName);
+router.patch('/telephone/:id', User.changeNum);
 router.patch('/theme/:id', User.setTheme);
 router.get('/:id', User.getProfile);
 router.get('/cars/:id', User.getMyVehicle);

@@ -12,12 +12,13 @@ exports.setThemeOption = async (id) => {
   return await db.execute(`UPDATE user SET theme = ? where id = ? ;` ,[true , id]);
 };
 
-
 exports.setMyName = async (name , id) => {
   return await db.execute(`UPDATE user SET name = ? where id = ? ;` ,[name , id]);
 };
 
-
+exports.setMyNum = async (num , id) => {
+  return await db.execute(`UPDATE user SET telephone = ? where id = ? ;` ,[num , id]);
+};
 
 exports.getByEmail = async (email) => {
     return await db.execute(`SELECT * FROM user Where email = ?;`, [email]);
