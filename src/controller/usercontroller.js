@@ -15,7 +15,7 @@ exports.findAll = async (request, response) => {
 };
 
 exports.setTheme = async (request, response) => {
-  const {id} = request.params;
+  const { id } = request.params;
   try {
     const result = await User.setThemeOption(id);
     response.status(200).json({ data: result[0] });
@@ -25,30 +25,37 @@ exports.setTheme = async (request, response) => {
 };
 
 exports.changeName = async (request, response) => {
-  const {id} = request.params;
-  const {name} = request.body;
-  try {
-    const result = await User.setMyName(name,id);
-    response.status(200).json({ data: result[0] });
-  } catch (error) {
-    response.json({ error: error.message });
+  const { id } = request.params;
+  const { name } = request.body;
+  if (name === undefined || name === null || name === "") {
+    response.status(400).json({ message: "Le nom ne peut pas être nul" });
+  } else {
+    try {
+      const result = await User.setMyName(name, id);
+      response.status(200).json({ data: result[0] });
+    } catch (error) {
+      response.json({ error: error.message });
+    }
   }
 };
 
 exports.changeNum = async (request, response) => {
-  const {id} = request.params;
-  const {num} = request.body;
+  const { id } = request.params;
+  const { num } = request.body;
+  if (num === undefined || num === null || num === "" || num < 10) {
+    response.status(400).json({ message: "Veuillez vérifier votre numéro de téléphone" });
+  } else {
   try {
-    const result = await User.setMyNum(num,id);
+    const result = await User.setMyNum(num, id);
     response.status(200).json({ data: result[0] });
   } catch (error) {
     response.json({ error: error.message });
   }
+}
 };
 
-
 exports.getProfile = async (request, response) => {
-  const {id} = request.params;
+  const { id } = request.params;
   try {
     const result = await User.getById(id);
     response.status(200).json({ data: result[0] });
@@ -57,9 +64,8 @@ exports.getProfile = async (request, response) => {
   }
 };
 
-
 exports.getMyVehicle = async (request, response) => {
-  const {id} = request.params;
+  const { id } = request.params;
   try {
     const result = await User.getMines(id);
     response.status(200).json({ data: result[0] });
@@ -67,8 +73,6 @@ exports.getMyVehicle = async (request, response) => {
     response.json({ error: error.message });
   }
 };
-
-
 
 exports.creation = async (request, response) => {
   const user = request.body;
@@ -191,11 +195,11 @@ exports.authentification = async (request, response) => {
                 response.send(error.message);
               } else {
                 request.user = {
-                    userId: user.id,
-                    nom: user.nom,
-                    prenom: user.prenom,
-                    email: user.email,
-                    telephone: user.telephone,
+                  userId: user.id,
+                  nom: user.nom,
+                  prenom: user.prenom,
+                  email: user.email,
+                  telephone: user.telephone,
                 };
                 response.status(200).json({
                   token: token,

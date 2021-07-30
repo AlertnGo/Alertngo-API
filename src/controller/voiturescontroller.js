@@ -24,18 +24,22 @@ exports.findNum = async (request, response) => {
 
 exports.addCar = async (request, response) => {
   const id = uuid.v4();
-  const {ndp, userid } = request.body;
-  try {
-    const result = await Voiture.getByNdp(ndp);
-    if (result[0].length !== 0) {
-      response.status(409).json({ message: "Un voiture existe déja" });
-    } else {
-      await Voiture.postMyCar(id, ndp, userid);
-      const data = await Voiture.getByNdp(ndp)
-      response.status(201).json(data[0]);
+  const { ndp, userid } = request.body;
+  if (ndp === undefined || ndp === null || ndp === "") {
+    response.status(400).json({ message: "Veuillez vérifier votre plaque d'immatriculation" });
+  } else {
+    try {
+      const result = await Voiture.getByNdp(ndp);
+      if (result[0].length !== 0) {
+        response.status(409).json({ message: "Un voiture existe déja" });
+      } else {
+        await Voiture.postMyCar(id, ndp, userid);
+        const data = await Voiture.getByNdp(ndp);
+        response.status(201).json(data[0]);
+      }
+    } catch (error) {
+      response.json(error.message);
     }
-  } catch (error) {
-    response.json(error.message);
   }
 };
 
@@ -55,11 +59,9 @@ exports.changeOne = async (request, response) => {
   const { id, ndp } = request.body;
   try {
     await Voiture.changeMYCar(ndp, id);
-    response
-      .status(200)
-      .json({
-        message: "Numero de plaque d'immatriculation a modifié avec succès",
-      });
+    response.status(200).json({
+      message: "Numero de plaque d'immatriculation a modifié avec succès",
+    });
   } catch (error) {
     response.json({ error: error.message });
   }
