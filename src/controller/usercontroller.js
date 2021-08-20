@@ -82,7 +82,6 @@ exports.creation = async (request, response) => {
       .json({ message: "Veuillez renseigner tous les champs obligatoires" });
   } else {
     // GESTION DES ERREURS DES INPUTS OBLIGATOIRES
-
     const regex = /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,3})(\.[a-z]{2,3})?$/;
     if (user.email === undefined || user.email === null) {
       response

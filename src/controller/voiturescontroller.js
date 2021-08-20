@@ -13,7 +13,6 @@ exports.findAll = async (request, response) => {
 
 exports.findNum = async (request, response) => {
   const { ndp } = request.params;
-  // console.log(request);
   try {
     const result = await Voiture.getUserInfo(ndp);
     response.status(200).json({ data: result[0] });
