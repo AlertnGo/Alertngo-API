@@ -31,4 +31,9 @@ CREATE TABLE messages (
     primarykey(id)
 );
 
+insert into alertngo.messages (message) value ("Bonjour, je voudrais vous informer qu'un incident est arrivé à votre voiture et j'en suis le témoin.")
 insert into alertngo.messages (message) value ("Bonjour, je tiens à vous remercier parceque votre façon de vous garer m'a facilité la vie. Merci et bonne journée.")
+insert into alertngo.messages (message) value ("Bonjour , je vous informe que je suis bloqué par votre voiture et  j'attends que vous déplaciez votre voiture.")
+
+
+
